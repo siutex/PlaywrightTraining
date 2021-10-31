@@ -1,16 +1,21 @@
-import pytest
 import os
+
+import pytest
+
 from pom.home_page_elements import HomePage
+
+TESTUSER = os.environ['TESTUSER']
+PASSWORD = os.environ['PASSWORD']
 
 
 # @pytest.mark.xfail(reason='url not ready')
 # @pytest.mark.skip
-@pytest.mark.parametrize("username", [os.environ['USERNAME'],
-                                      pytest.param("test", marks=pytest.mark.xfail),
+@pytest.mark.parametrize("username", [TESTUSER,
+                                      pytest.param("jurek", marks=pytest.mark.xfail),
                                       pytest.param("zonk", marks=pytest.mark.xfail)])
-@pytest.mark.parametrize("password", [os.environ['PASSWORD'],
-                                      pytest.param("test", marks=pytest.mark.xfail),
-                                      pytest.param("test", marks=pytest.mark.xfail)])
+@pytest.mark.parametrize("password", [PASSWORD,
+                                      pytest.param("abab", marks=pytest.mark.xfail),
+                                      pytest.param("tede", marks=pytest.mark.xfail)])
 def test_home_page(set_up, username, password) -> None:
     page = set_up
 

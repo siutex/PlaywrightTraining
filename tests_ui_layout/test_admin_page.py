@@ -4,6 +4,9 @@ import pytest
 
 from pom.admin_page_elements import *
 
+TESTUSER = os.environ['TESTUSER']
+PASSWORD = os.environ['PASSWORD']
+
 
 @pytest.mark.smoke
 def test_admin_page_login(set_up):
@@ -17,13 +20,13 @@ def test_admin_page_login(set_up):
     page.click(AdminPage.username_input)
 
     # Fill input[name="username"]
-    page.fill(AdminPage.username_input, os.environ['USERNAME'])
+    page.fill(AdminPage.username_input, TESTUSER)
 
     # Click input[name="password"]
     page.click(AdminPage.password_input)
 
     # Fill input[name="password"]
-    page.fill(AdminPage.password_input, os.environ['PASSWORD'])
+    page.fill(AdminPage.password_input, PASSWORD)
 
     # Click text=Log in
     page.click(AdminPage.login_button)
@@ -40,4 +43,3 @@ def test_admin_page_login(set_up):
     # Click text=Log out
     page.click(AdminPage.log_out_button)
     assert page.url == "https://siutex.pythonanywhere.com/admin/logout/"
-
