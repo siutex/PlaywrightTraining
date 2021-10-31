@@ -1,9 +1,8 @@
-from playwright.sync_api import Playwright, sync_playwright
+import os
 
-import utils.secret_config
-from pom.admin_page_elements import *
-from playwright.sync_api import Playwright, sync_playwright
 import pytest
+
+from pom.admin_page_elements import *
 
 
 @pytest.mark.smoke
@@ -18,13 +17,13 @@ def test_admin_page_login(set_up):
     page.click(AdminPage.username_input)
 
     # Fill input[name="username"]
-    page.fill(AdminPage.username_input, utils.secret_config.USERNAME)
+    page.fill(AdminPage.username_input, os.environ['USERNAME'])
 
     # Click input[name="password"]
     page.click(AdminPage.password_input)
 
     # Fill input[name="password"]
-    page.fill(AdminPage.password_input, utils.secret_config.PASSWORD)
+    page.fill(AdminPage.password_input, os.environ['PASSWORD'])
 
     # Click text=Log in
     page.click(AdminPage.login_button)
